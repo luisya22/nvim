@@ -17,11 +17,17 @@ return require('packer').startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('nvim-treesitter/playground')
+    use('nvim-treesitter/nvim-treesitter-context')
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('terrortylor/nvim-comment')
     use('nikvdp/ejs-syntax')
+
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+    }
 
     use {
         'kkoomen/vim-doge',
@@ -55,5 +61,5 @@ return require('packer').startup(function(use)
     use {
         'fatih/vim-go',
         run = ':GoInstallBinaries'
-    }        
+    }
 end)
