@@ -4,7 +4,6 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-    -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use {	  
         'nvim-telescope/telescope.nvim', tag = '0.1.1',	  -- or                            , branch = '0.1.x',
@@ -61,5 +60,65 @@ return require('packer').startup(function(use)
     use {
         'fatih/vim-go',
         run = ':GoInstallBinaries'
+    }
+
+    use 'vim-airline/vim-airline'
+
+    use {
+        'kristijanhusak/vim-dadbod-ui',
+        requires = {
+            {'tpope/vim-dadbod'},
+            {'kristijanhusak/vim-dadbod-completion', ft = {'sql', 'mysql', 'plsql'}},
+        },
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
+        config = function()
+            -- Your DBUI configuration
+            -- require("config.dadbod").setup()
+            vim.g.db_ui_use_nerd_fonts = 1
+        end,
+    }
+
+    use {
+        "hrsh7th/nvim-cmp",
+        requires = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp",
+        },
+        config = function()
+            -- require("config.cmp").setup()
+        end,
+    }
+
+    use {
+        'adalessa/laravel.nvim',
+        requires = {
+            'nvim-telescope/telescope.nvim',
+            'tpope/vim-dotenv',
+            'MunifTanjim/nui.nvim',
+        },
+        cmd = { 'Sail', 'Artisan', 'Composer', 'Npm', 'Yarn', 'Laravel' },
+        keys = {
+            { '<leader>la', ':Laravel artisan<cr>' },
+            { '<leader>lr', ':Laravel routes<cr>' },
+            { '<leader>lm', ':Laravel related<cr>' },
+            {
+                '<leader>lt',
+                function()
+                    require('laravel.tinker').send_to_tinker()
+                end,
+                mode = 'v',
+                desc = 'Laravel Application Routes',
+            },
+        },
+        event = { 'VeryLazy' },
+        config = function()
+            require('laravel').setup()
+            require('telescope').load_extension 'laravel'
+        end,
     }
 end)
