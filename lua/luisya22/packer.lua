@@ -6,13 +6,18 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use {	  
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',	  -- or                            , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',	  -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }  
     }
 
     use 'folke/tokyonight.nvim'
 
+    use 'supermaven-inc/supermaven-nvim'
 
+    use {
+        "akinsho/toggleterm.nvim",
+        tag = '*',
+    }
 
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('nvim-treesitter/playground')
@@ -64,6 +69,8 @@ return require('packer').startup(function(use)
 
     use 'vim-airline/vim-airline'
 
+    use 'jwalton512/vim-blade'
+
     use {
         'kristijanhusak/vim-dadbod-ui',
         requires = {
@@ -82,6 +89,7 @@ return require('packer').startup(function(use)
             vim.g.db_ui_use_nerd_fonts = 1
         end,
     }
+    
 
     use {
         "hrsh7th/nvim-cmp",
@@ -121,4 +129,17 @@ return require('packer').startup(function(use)
             require('telescope').load_extension 'laravel'
         end,
     }
+
+    use {
+        'onsails/lspkind-nvim',
+        config = function()
+            require('lspkind').init({
+                -- You can customize `lspkind` behavior here if needed
+                symbol_map = {
+                    Supermaven = "", -- Optional: Adding Supermaven icon as we discussed earlier
+                }
+            })
+        end
+    }  
+    
 end)

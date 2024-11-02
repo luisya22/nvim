@@ -4,7 +4,6 @@ lsp.preset('recommended')
 lsp.setup()
 
 lsp.ensure_installed({
-	'tsserver',
 	'eslint',
 	'rust_analyzer',
 	'gopls',
@@ -56,3 +55,4 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
+
