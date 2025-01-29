@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
 
     use 'folke/tokyonight.nvim'
 
-    use 'supermaven-inc/supermaven-nvim'
+    -- use 'supermaven-inc/supermaven-nvim'
 
     use {
         "akinsho/toggleterm.nvim",
